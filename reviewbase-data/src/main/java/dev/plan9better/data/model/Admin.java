@@ -8,7 +8,11 @@ import java.util.List;
 
 @Entity
 @Data
-public class Admin extends User{
+public class Admin extends AppUser {
     @ManyToMany
     private List<Feedback> managedFeedbacks;
+
+    public List<Feedback> getManagedFeedbacks() {
+        return managedFeedbacks;
+    }
 }
