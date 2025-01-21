@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/game")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class GameController {
     private final GameRepository gameRepository;
     private final ReviewRepository reviewRepository;
@@ -37,7 +37,6 @@ public class GameController {
             return ResponseEntity.notFound().build();
         }
 
-        // Ensure reviews is a mutable list
         List<Review> reviews = new ArrayList<>(reviewRepository.findAllByGame(game.get()));
 
         if (reviews.isEmpty()) {
@@ -45,7 +44,6 @@ public class GameController {
             reviews = new ArrayList<>(reviewService.classifyReviews(reviews));
         }
 
-        // Now removeIf will work
         reviews.removeIf(review -> review.getConstructiveness() != Constructiveness.CONSTRUCTIVE);
 
         List<ReviewDto> reviewDtos = reviews.stream()

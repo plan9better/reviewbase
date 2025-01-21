@@ -3,6 +3,7 @@ package dev.plan9better.webapi.controller;
 import dev.plan9better.data.model.AppUser;
 import dev.plan9better.data.model.Feedback;
 import dev.plan9better.data.model.Review;
+import dev.plan9better.data.model.enums.Verdict;
 import dev.plan9better.data.repository.AppUserRepository;
 import dev.plan9better.data.repository.FeedbackRepository;
 import dev.plan9better.data.repository.ReviewRepository;
@@ -26,7 +27,7 @@ public class FeedbackController {
     }
 
     @PostMapping
-    public ResponseEntity report(@RequestBody SubmitFeedbackDto fb){
+    public ResponseEntity<String> report(@RequestBody SubmitFeedbackDto fb){
         Feedback feedback = new Feedback();
         feedback.setComment(fb.comment());
 
@@ -40,6 +41,7 @@ public class FeedbackController {
             return ResponseEntity.badRequest().build();
         }
         feedback.setSubject(subject.get());
+        feedback.setVerdict(Verdict.PENDING);
         feedbackRepository.save(feedback);
         return ResponseEntity.ok("Saved feedback");
     }
