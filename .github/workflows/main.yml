@@ -9,7 +9,6 @@ on:
 jobs:
   auto-deploy:
     name: Auto-deploy
-    if: github.ref == 'refs/heads/master' || github.head_ref == 'master'
     runs-on: ubuntu-latest
     steps: 
       - id: echo
