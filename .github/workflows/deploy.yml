@@ -1,0 +1,11 @@
+name: call-main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  call-main:
+    uses: plan9better/reviewbase/.github/workflows/main.yml@master
+    with: 
+      text: from deploy.yml
+  
