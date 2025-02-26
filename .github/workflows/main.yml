@@ -1,18 +1,9 @@
 name: sample-action
 
-on:
-  workflow_call:
-    inputs:
-      text:
-        required: true
-        type: string
+on: push
 jobs:
-  auto-deploy:
-    name: Auto-deploy
+  hello:
     runs-on: ubuntu-latest
-    steps: 
-      - id: echo
-        name: echo
-        shell: bash
-        run: |
-          echo ${{inputs.text}}
+    steps:
+      - name: "step1"
+        run: echo "Hello World!"
