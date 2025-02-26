@@ -1,0 +1,15 @@
+name: sample-action
+
+on:
+  workflow_call:
+    inputs:
+      text:
+        required: true
+        type: string
+jobs:
+  auto-deploy:
+    name: deploy
+    if: github.ref == 'refs/heads/master' || github.head_ref == 'master'
+    runs-on: ubuntu-latest
+    steps: 
+    - id: echo ${{inputs.text}}
