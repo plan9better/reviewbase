@@ -2,7 +2,7 @@ name: call-main
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   call-main:
     uses: plan9better/reviewbase/.github/workflows/main.yml@master
