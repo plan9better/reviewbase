@@ -8,11 +8,12 @@ on:
         type: string
 jobs:
   auto-deploy:
-    name: deploy
+    name: Auto-deploy
     if: github.ref == 'refs/heads/master' || github.head_ref == 'master'
     runs-on: ubuntu-latest
     steps: 
-    - id: hello
-     shell: bash
+      - id: echo
+        name: echo
+        shell: bash
         run: |
-          echo ${{inputs.string}}
+          echo ${{inputs.text}}
