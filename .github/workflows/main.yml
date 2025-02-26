@@ -12,4 +12,7 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.head_ref == 'master'
     runs-on: ubuntu-latest
     steps: 
-    - id: echo ${{inputs.text}}
+    - id: hello
+     shell: bash
+        run: |
+          echo ${{inputs.string}}
